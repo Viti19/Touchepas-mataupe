@@ -69,3 +69,32 @@ Le bot détecte automatiquement les noms de compte au format:
 - `Nom-Chiffres` (exemple: `Midnighto-6615`)
 - Le nom peut contenir des lettres, chiffres et underscores
 - Les chiffres après le tiret peuvent avoir de 1 à 5 chiffres
+
+## Système de blacklist
+
+Le bot inclut un système de blacklist pour marquer les comptes suspects (usurpateurs, taupes, etc.).
+
+### Commandes disponibles
+
+**Ajouter un compte à la blacklist:**
+```
+!blacklist Nom-1234 Raison de la blacklist
+```
+Exemple: `!blacklist Midnighto-6615 Usurpateur confirmé`
+
+**Voir tous les comptes blacklistés:**
+```
+!blacklist-list
+```
+
+**Retirer un compte de la blacklist:**
+```
+!blacklist-remove Nom-1234
+```
+
+### Fonctionnement
+
+- Quand vous recherchez un compte blacklisté, le bot affiche un **avertissement en gros** avec la raison et l'auteur de la blacklist
+- Tous les comptes blacklistés sont enregistrés dans une base de données PostgreSQL
+- La blacklist inclut: le nom du compte, la raison, l'auteur et la date d'ajout
+- Parfait pour le recrutement de guilde et éviter les problèmes!
