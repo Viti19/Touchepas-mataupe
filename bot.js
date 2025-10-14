@@ -21,6 +21,24 @@ const pool = new Pool({
   connectionString: DATABASE_URL,
 });
 
+async function initDatabase() {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS blacklist (
+        id SERIAL PRIMARY KEY,
+        compte VARCHAR(255) NOT NULL UNIQUE,
+        raison VARCHAR(500) NOT NULL,
+        auteur VARCHAR(255) NOT NULL,
+        date_ajout TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+    console.log('✅ Base de données initialisée');
+  } catch (error) {
+    console.error('❌ Erreur lors de l\'initialisation de la base de données:', error);
+    process.exit(1);
+  }
+}
+
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -327,7 +345,13 @@ client.on('messageCreate', async (message) => {
   }
 });
 
-client.login(DISCORD_BOT_TOKEN).catch(error => {
-  console.error('❌ Erreur de connexion:', error);
-  process.exit(1);
-});
+async function start() {
+  await initDatabase();
+  
+  client.login(DISCORD_BOT_TOKEN).catch(error => {
+    console.error('❌ Erreur de connexion:', error);
+    process.exit(1);
+  });
+}
+
+start();
