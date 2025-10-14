@@ -26,9 +26,20 @@ Le bot a besoin d'un token Discord Bot pour fonctionner. Vous devez ajouter le s
 C'est **ultra simple** ! Une fois le bot configuré et démarré:
 
 1. Dans votre serveur Discord, tapez simplement le nom du compte Ankama (format: `Nom-1234`)
-2. Le bot détecte automatiquement le format et génère le lien Ankama
+2. Le bot détecte automatiquement le format et récupère les informations du profil
 
 **Pas de commande, pas de slash - juste le nom du compte !**
+
+## Fonctionnalités
+
+✅ **Affichage automatique des personnages** avec :
+- Nom du personnage
+- Classe
+- Niveau
+- Serveur
+- Guilde (si le personnage en a une)
+
+✅ **Lien direct** vers le profil Ankama Dofus Touch
 
 ## Exemple
 
@@ -43,6 +54,13 @@ Le bot répond automatiquement:
 
 📋 Compte: Midnighto-6615
 🔗 Lien: https://account.ankama.com/fr/profil-ankama/Midnighto-6615/dofustouch
+
+👥 Personnages:
+
+**1. Midniight**
+   └ Classe: Iop | Niveau: Lvl 200
+   └ Serveur: Tiliwan
+   └ Guilde: The Revenant'S
 ```
 
 ## Format accepté

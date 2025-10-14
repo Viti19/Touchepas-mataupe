@@ -11,6 +11,8 @@
   "license": "ISC",
   "description": "Bot Discord pour générer des liens de profil Ankama Dofus Touch",
   "dependencies": {
-    "discord.js": "^14.23.2"
+    "cheerio": "^1.1.2",
+    "discord.js": "^14.23.2",
+    "node-fetch": "^3.3.2"
   }
 }

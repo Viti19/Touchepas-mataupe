@@ -5,6 +5,8 @@ Bot Discord ultra-simple pour générer automatiquement des liens vers les profi
 
 ## Fonctionnalités principales
 - Détection automatique des noms de compte Ankama dans les messages
+- Scraping automatique des profils Ankama pour récupérer les informations des personnages
+- Affichage des personnages avec nom, classe, niveau, serveur et guilde
 - Génération instantanée de liens sans commande
 - Messages en français adaptés pour les guildes Dofus Touch
 - Ultra simple: tapez juste le nom du compte (ex: `Midnighto-6615`) et le bot répond automatiquement
