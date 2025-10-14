@@ -41,27 +41,39 @@ Bot Discord ultra-simple pour générer automatiquement des liens vers les profi
 - **Discord Bot**: `npm start` - Démarre le bot Discord (console output)
 
 ## Déploiement
-Le bot est conçu pour être déployé sur **Render** avec un uptime 24/7 gratuit.
+Le bot est conçu pour être déployé sur **Fly.io** avec un uptime 24/7 gratuit (vraiment gratuit !).
 
-### Fichiers de configuration Render
-- `render.yaml` : Configuration Blueprint pour déploiement automatique
-- `.env.example` : Template des variables d'environnement
-- `DEPLOY.md` : Guide complet de déploiement étape par étape
+### Fichiers de configuration Fly.io
+- `Dockerfile` : Configuration Docker pour le déploiement
+- `fly.toml` : Configuration Fly.io
+- `.dockerignore` : Fichiers à exclure du build Docker
+- `FLY_DEPLOY.md` : Guide complet de déploiement étape par étape
+
+### Pourquoi Fly.io ?
+- ✅ Vraiment gratuit pour toujours (3 VMs gratuites)
+- ✅ Pas de carte bancaire requise
+- ✅ Actif 24/7 automatiquement (pas de sleep mode)
+- ✅ Simple à déployer (3 commandes)
+- ✅ PostgreSQL gratuit via Neon
 
 ### Comment déployer
-1. Push le code sur GitHub
-2. Créer un Blueprint sur Render avec le fichier `render.yaml`
-3. Configurer le `DISCORD_BOT_TOKEN` dans les variables d'environnement
-4. Le bot est automatiquement actif 24/7 (Background Worker)
+1. Installer Fly CLI : `curl -L https://fly.io/install.sh | sh`
+2. Se connecter : `fly auth login`
+3. Configurer les secrets : `fly secrets set DISCORD_BOT_TOKEN=...`
+4. Déployer : `fly deploy`
 
-Voir `DEPLOY.md` pour les instructions détaillées.
+Voir `FLY_DEPLOY.md` pour les instructions détaillées.
 
 ## Changements récents
-- 2025-10-14: Configuration pour déploiement Render 24/7
-  - Ajout de render.yaml pour déploiement Blueprint automatique
-  - Configuration Background Worker (uptime 24/7 gratuit)
-  - Guide de déploiement complet (DEPLOY.md)
-  - Template .env.example pour les variables d'environnement
+- 2025-10-14: Migration vers Fly.io pour déploiement 24/7 gratuit
+  - Ajout de Dockerfile pour containerisation
+  - Configuration fly.toml pour déploiement automatique
+  - Guide de déploiement FLY_DEPLOY.md (simple, 3 commandes)
+  - PostgreSQL gratuit via Neon au lieu de Railway
+  - Abandonne Railway (problèmes de variables d'environnement)
+- 2025-10-14: Configuration pour déploiement Render/Railway
+  - Ajout de render.yaml et railway.json (alternatives)
+  - Guides de déploiement multiples (DEPLOY.md, ALTERNATIVES_HEBERGEMENT.md)
 - 2025-10-14: Ajout du système de blacklist avec base de données PostgreSQL
   - Table blacklist avec compte, raison, auteur, date_ajout
   - Commandes !blacklist, !blacklist-list, !blacklist-remove
