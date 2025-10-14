@@ -27,25 +27,25 @@ async function registerCommands() {
 
   try {
     console.log('📝 Enregistrement des commandes slash...');
-
-    const guilds = client.guilds.cache.map(guild => guild.id);
     
-    for (const guildId of guilds) {
-      await rest.put(
-        Routes.applicationGuildCommands(client.application.id, guildId),
-        { body: commands.map(cmd => cmd.toJSON()) }
-      );
-      console.log(`✅ Commandes enregistrées pour le serveur: ${guildId}`);
-    }
+    await client.application.fetch();
+    
+    await rest.put(
+      Routes.applicationCommands(client.application.id),
+      { body: commands.map(cmd => cmd.toJSON()) }
+    );
+    
+    console.log('✅ Commandes slash enregistrées avec succès !');
   } catch (error) {
     console.error('❌ Erreur lors de l\'enregistrement des commandes:', error);
+    console.error('Détails:', error.message);
   }
 }
 
 client.once('ready', async () => {
   console.log(`✅ Bot connecté en tant que ${client.user.tag}`);
   await registerCommands();
-  console.log('🤖 Bot Discord prêt à utiliser!');
+  console.log('🤖 Bot Discord prêt à utiliser! Commande /profil disponible.');
 });
 
 client.on('interactionCreate', async interaction => {

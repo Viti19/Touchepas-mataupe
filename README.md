@@ -27,6 +27,8 @@ Une fois le bot configuré et démarré:
 2. Entrez le nom du compte Ankama (exemple: `Midnighto-6615`)
 3. Le bot génère automatiquement le lien: `https://account.ankama.com/fr/profil-ankama/Midnighto-6615/dofustouch`
 
+**⏱️ Note importante :** Après le premier démarrage du bot, les commandes slash peuvent prendre jusqu'à 1 heure pour apparaître sur Discord (c'est normal, c'est le délai de propagation de Discord). Si la commande `/profil` n'apparaît pas immédiatement, patientez un peu.
+
 ## Commandes disponibles
 
 - `/profil <compte>` - Génère un lien vers le profil Ankama Dofus Touch du compte spécifié
