@@ -1,5 +1,5 @@
 services:
-  - type: worker
+  - type: web
     name: discord-bot-ankama
     env: node
     buildCommand: npm install
@@ -11,7 +11,10 @@ services:
         fromDatabase:
           name: discord-bot-db
           property: connectionString
+      - key: PORT
+        value: 10000
     autoDeploy: true
+    plan: free
 
 databases:
   - name: discord-bot-db
