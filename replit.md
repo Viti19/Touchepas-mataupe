@@ -41,39 +41,45 @@ Bot Discord ultra-simple pour générer automatiquement des liens vers les profi
 - **Discord Bot**: `npm start` - Démarre le bot Discord (console output)
 
 ## Déploiement
-Le bot est conçu pour être déployé sur **Fly.io** avec un uptime 24/7 gratuit (vraiment gratuit !).
+Le bot est conçu pour être déployé sur **Wispbyte + Neon** avec un uptime 24/7 gratuit (100% gratuit, pas de carte bancaire !).
 
-### Fichiers de configuration Fly.io
-- `Dockerfile` : Configuration Docker pour le déploiement
-- `fly.toml` : Configuration Fly.io
-- `.dockerignore` : Fichiers à exclure du build Docker
-- `FLY_DEPLOY.md` : Guide complet de déploiement étape par étape
+### Solution recommandée : Wispbyte + Neon
+- **Wispbyte** : Hébergement du bot Discord gratuit 24/7
+- **Neon** : Base de données PostgreSQL gratuite
 
-### Pourquoi Fly.io ?
-- ✅ Vraiment gratuit pour toujours (3 VMs gratuites)
-- ✅ Pas de carte bancaire requise
-- ✅ Actif 24/7 automatiquement (pas de sleep mode)
-- ✅ Simple à déployer (3 commandes)
-- ✅ PostgreSQL gratuit via Neon
+### Pourquoi Wispbyte + Neon ?
+- ✅ **Vraiment gratuit pour toujours** (pas de piège)
+- ✅ **Pas de carte bancaire** requise du tout
+- ✅ **Actif 24/7 automatiquement** (pas de sleep mode)
+- ✅ **Ultra simple à déployer** (15 minutes, interface web)
+- ✅ **1GB stockage** pour le bot + **3GB PostgreSQL** gratuit
+- ✅ **Note 5/5 étoiles** sur Trustpilot
 
 ### Comment déployer
-1. Installer Fly CLI : `curl -L https://fly.io/install.sh | sh`
-2. Se connecter : `fly auth login`
-3. Configurer les secrets : `fly secrets set DISCORD_BOT_TOKEN=...`
-4. Déployer : `fly deploy`
+1. Créer compte Neon : https://neon.tech → Copier Connection String
+2. Créer compte Wispbyte : https://wispbyte.com → Créer un serveur Node.js
+3. Uploader les fichiers via interface web
+4. Configurer `DISCORD_BOT_TOKEN` et `DATABASE_URL` dans les variables
+5. Démarrer le bot → En ligne 24/7 !
 
-Voir `FLY_DEPLOY.md` pour les instructions détaillées.
+Voir `WISPBYTE_DEPLOY.md` pour le guide détaillé étape par étape.
+
+### Alternatives (nécessitent carte bancaire)
+- `FLY_DEPLOY.md` : Déploiement sur Fly.io (Docker, CLI)
+- `DEPLOY.md` : Déploiement sur Render
+- `ALTERNATIVES_HEBERGEMENT.md` : Autres options (Railway, Oracle Cloud)
 
 ## Changements récents
-- 2025-10-14: Migration vers Fly.io pour déploiement 24/7 gratuit
-  - Ajout de Dockerfile pour containerisation
-  - Configuration fly.toml pour déploiement automatique
-  - Guide de déploiement FLY_DEPLOY.md (simple, 3 commandes)
-  - PostgreSQL gratuit via Neon au lieu de Railway
-  - Abandonne Railway (problèmes de variables d'environnement)
-- 2025-10-14: Configuration pour déploiement Render/Railway
-  - Ajout de render.yaml et railway.json (alternatives)
-  - Guides de déploiement multiples (DEPLOY.md, ALTERNATIVES_HEBERGEMENT.md)
+- 2025-10-14: Migration vers Wispbyte + Neon (solution 100% gratuite sans carte bancaire)
+  - Guide WISPBYTE_DEPLOY.md complet avec captures d'écran
+  - Interface web simple (pas de CLI, pas de Docker)
+  - Déploiement en 15 minutes via upload de fichiers
+  - Vraiment gratuit 24/7 : Wispbyte (bot) + Neon (PostgreSQL)
+  - Abandonne Fly.io et Railway (demandent carte bancaire)
+- 2025-10-14: Configuration pour déploiement Fly.io/Render/Railway (alternatives)
+  - Ajout de Dockerfile, fly.toml, render.yaml, railway.json
+  - Guides multiples : FLY_DEPLOY.md, DEPLOY.md, ALTERNATIVES_HEBERGEMENT.md
+  - Note : Ces options nécessitent carte bancaire pour vérification
 - 2025-10-14: Ajout du système de blacklist avec base de données PostgreSQL
   - Table blacklist avec compte, raison, auteur, date_ajout
   - Commandes !blacklist, !blacklist-list, !blacklist-remove
