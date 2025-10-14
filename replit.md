@@ -40,7 +40,28 @@ Bot Discord ultra-simple pour générer automatiquement des liens vers les profi
 ## Workflow configuré
 - **Discord Bot**: `npm start` - Démarre le bot Discord (console output)
 
+## Déploiement
+Le bot est conçu pour être déployé sur **Render** avec un uptime 24/7 gratuit.
+
+### Fichiers de configuration Render
+- `render.yaml` : Configuration Blueprint pour déploiement automatique
+- `.env.example` : Template des variables d'environnement
+- `DEPLOY.md` : Guide complet de déploiement étape par étape
+
+### Comment déployer
+1. Push le code sur GitHub
+2. Créer un Blueprint sur Render avec le fichier `render.yaml`
+3. Configurer le `DISCORD_BOT_TOKEN` dans les variables d'environnement
+4. Le bot est automatiquement actif 24/7 (Background Worker)
+
+Voir `DEPLOY.md` pour les instructions détaillées.
+
 ## Changements récents
+- 2025-10-14: Configuration pour déploiement Render 24/7
+  - Ajout de render.yaml pour déploiement Blueprint automatique
+  - Configuration Background Worker (uptime 24/7 gratuit)
+  - Guide de déploiement complet (DEPLOY.md)
+  - Template .env.example pour les variables d'environnement
 - 2025-10-14: Ajout du système de blacklist avec base de données PostgreSQL
   - Table blacklist avec compte, raison, auteur, date_ajout
   - Commandes !blacklist, !blacklist-list, !blacklist-remove

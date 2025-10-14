@@ -1,0 +1,20 @@
+services:
+  - type: worker
+    name: discord-bot-ankama
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DISCORD_BOT_TOKEN
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: discord-bot-db
+          property: connectionString
+    autoDeploy: true
+
+databases:
+  - name: discord-bot-db
+    databaseName: discord_bot
+    user: discord_bot_user
+    plan: free
