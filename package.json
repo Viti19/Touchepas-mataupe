@@ -1,0 +1,16 @@
+{
+  "name": "discord-bot-ankama",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Bot Discord pour générer des liens de profil Ankama Dofus Touch",
+  "dependencies": {
+    "discord.js": "^14.23.2"
+  }
+}
