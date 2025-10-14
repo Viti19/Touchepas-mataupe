@@ -1,12 +1,13 @@
 # Discord Bot - Profil Ankama Dofus Touch
 
 ## Vue d'ensemble
-Bot Discord simple pour générer automatiquement des liens vers les profils Ankama Dofus Touch. Créé pour faciliter la vérification des profils de joueurs pendant le processus de recrutement des guildes.
+Bot Discord ultra-simple pour générer automatiquement des liens vers les profils Ankama Dofus Touch. Créé pour faciliter la vérification des profils de joueurs pendant le processus de recrutement des guildes.
 
 ## Fonctionnalités principales
-- Commande slash `/profil` pour générer des liens Ankama
+- Détection automatique des noms de compte Ankama dans les messages
+- Génération instantanée de liens sans commande
 - Messages en français adaptés pour les guildes Dofus Touch
-- Simple à utiliser: tapez le nom du compte et recevez le lien complet
+- Ultra simple: tapez juste le nom du compte (ex: `Midnighto-6615`) et le bot répond automatiquement
 
 ## Architecture du projet
 ```

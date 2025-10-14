@@ -1,6 +1,6 @@
 # Bot Discord - Profil Ankama Dofus Touch
 
-Bot Discord simple pour générer des liens vers les profils Ankama Dofus Touch. Utile pour les guildes qui souhaitent vérifier les profils de leurs membres pendant le recrutement.
+Bot Discord ultra-simple pour générer des liens vers les profils Ankama Dofus Touch. Utile pour les guildes qui souhaitent vérifier les profils de leurs membres pendant le recrutement.
 
 ## Configuration
 
@@ -8,11 +8,13 @@ Bot Discord simple pour générer des liens vers les profils Ankama Dofus Touch.
 
 1. Allez sur le [Portail Discord Developer](https://discord.com/developers/applications)
 2. Cliquez sur "New Application" et donnez-lui un nom
-3. Allez dans l'onglet "Bot" et cliquez sur "Add Bot"
-4. Copiez le token du bot (cliquez sur "Reset Token" si nécessaire)
-5. Dans l'onglet "OAuth2" > "URL Generator":
-   - Cochez "bot" et "applications.commands"
-   - Dans les permissions du bot, cochez: "Send Messages", "Use Slash Commands"
+3. Allez dans l'onglet "Bot":
+   - Cliquez sur "Add Bot"
+   - **IMPORTANT** : Activez "Message Content Intent" (obligatoire pour que le bot puisse lire vos messages)
+   - Copiez le token du bot (cliquez sur "Reset Token" si nécessaire)
+4. Dans l'onglet "OAuth2" > "URL Generator":
+   - Cochez "bot"
+   - Dans les permissions du bot, cochez: "Send Messages", "Read Messages"
    - Copiez l'URL générée et ouvrez-la pour ajouter le bot à votre serveur
 
 ### 2. Configurer le Token
@@ -21,28 +23,31 @@ Le bot a besoin d'un token Discord Bot pour fonctionner. Vous devez ajouter le s
 
 ## Utilisation
 
-Une fois le bot configuré et démarré:
+C'est **ultra simple** ! Une fois le bot configuré et démarré:
 
-1. Dans votre serveur Discord, tapez `/profil`
-2. Entrez le nom du compte Ankama (exemple: `Midnighto-6615`)
-3. Le bot génère automatiquement le lien: `https://account.ankama.com/fr/profil-ankama/Midnighto-6615/dofustouch`
+1. Dans votre serveur Discord, tapez simplement le nom du compte Ankama (format: `Nom-1234`)
+2. Le bot détecte automatiquement le format et génère le lien Ankama
 
-**⏱️ Note importante :** Après le premier démarrage du bot, les commandes slash peuvent prendre jusqu'à 1 heure pour apparaître sur Discord (c'est normal, c'est le délai de propagation de Discord). Si la commande `/profil` n'apparaît pas immédiatement, patientez un peu.
-
-## Commandes disponibles
-
-- `/profil <compte>` - Génère un lien vers le profil Ankama Dofus Touch du compte spécifié
+**Pas de commande, pas de slash - juste le nom du compte !**
 
 ## Exemple
 
+Vous tapez dans le chat:
 ```
-/profil Midnighto-6615
+Midnighto-6615
 ```
 
-Résultat:
+Le bot répond automatiquement:
 ```
 🔍 Profil Ankama Dofus Touch
 
 📋 Compte: Midnighto-6615
 🔗 Lien: https://account.ankama.com/fr/profil-ankama/Midnighto-6615/dofustouch
 ```
+
+## Format accepté
+
+Le bot détecte automatiquement les noms de compte au format:
+- `Nom-Chiffres` (exemple: `Midnighto-6615`)
+- Le nom peut contenir des lettres, chiffres et underscores
+- Les chiffres après le tiret peuvent avoir de 1 à 5 chiffres

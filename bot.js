@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, REST, Routes, SlashCommandBuilder } from 'discord.js';
+import { Client, GatewayIntentBits } from 'discord.js';
 
 const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
 
@@ -8,58 +8,36 @@ if (!DISCORD_BOT_TOKEN) {
 }
 
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+  ]
 });
 
-const commands = [
-  new SlashCommandBuilder()
-    .setName('profil')
-    .setDescription('Génère un lien vers le profil Ankama Dofus Touch')
-    .addStringOption(option =>
-      option.setName('compte')
-        .setDescription('Nom du compte Ankama (ex: Midnighto-6615)')
-        .setRequired(true)
-    )
-];
-
-async function registerCommands() {
-  const rest = new REST({ version: '10' }).setToken(DISCORD_BOT_TOKEN);
-
-  try {
-    console.log('📝 Enregistrement des commandes slash...');
-    
-    await client.application.fetch();
-    
-    await rest.put(
-      Routes.applicationCommands(client.application.id),
-      { body: commands.map(cmd => cmd.toJSON()) }
-    );
-    
-    console.log('✅ Commandes slash enregistrées avec succès !');
-  } catch (error) {
-    console.error('❌ Erreur lors de l\'enregistrement des commandes:', error);
-    console.error('Détails:', error.message);
-  }
-}
-
-client.once('ready', async () => {
+client.once('ready', () => {
   console.log(`✅ Bot connecté en tant que ${client.user.tag}`);
-  await registerCommands();
-  console.log('🤖 Bot Discord prêt à utiliser! Commande /profil disponible.');
+  console.log('🤖 Bot Discord prêt! Tapez un nom de compte Ankama (ex: Midnighto-6615) pour générer le lien.');
 });
 
-client.on('interactionCreate', async interaction => {
-  if (!interaction.isChatInputCommand()) return;
-
-  if (interaction.commandName === 'profil') {
-    const compte = interaction.options.getString('compte');
-    
+client.on('messageCreate', async (message) => {
+  if (message.author.bot) return;
+  
+  const ankamaPattern = /^([a-zA-Z0-9_]+)-(\d{1,5})$/;
+  const match = message.content.trim().match(ankamaPattern);
+  
+  if (match) {
+    const compte = match[0];
     const lien = `https://account.ankama.com/fr/profil-ankama/${compte}/dofustouch`;
     
-    await interaction.reply({
-      content: `🔍 **Profil Ankama Dofus Touch**\n\n📋 Compte: \`${compte}\`\n🔗 Lien: ${lien}`,
-      ephemeral: false
-    });
+    try {
+      await message.reply({
+        content: `🔍 **Profil Ankama Dofus Touch**\n\n📋 Compte: \`${compte}\`\n🔗 Lien: ${lien}`
+      });
+      console.log(`✅ Lien généré pour: ${compte}`);
+    } catch (error) {
+      console.error('❌ Erreur lors de la réponse:', error);
+    }
   }
 });
 
