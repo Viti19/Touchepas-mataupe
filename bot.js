@@ -95,16 +95,32 @@ client.on('messageCreate', async (message) => {
         return;
       }
       
-      let response = `🔍 **Profil Ankama Dofus Touch**\n\n📋 Compte: \`${compte}\`\n🔗 Lien: ${profileData.url}\n\n👥 **Personnages:**\n\n`;
+      const header = `🔍 **Profil Ankama Dofus Touch**\n\n📋 Compte: \`${compte}\`\n🔗 Lien: ${profileData.url}\n\n👥 **Personnages:** (${profileData.characters.length} trouvé(s))\n\n`;
+      
+      let messages = [];
+      let currentMessage = header;
       
       profileData.characters.forEach((char, index) => {
-        response += `**${index + 1}. ${char.name}**\n`;
-        response += `   └ Classe: ${char.classe} | Niveau: ${char.level}\n`;
-        response += `   └ Serveur: ${char.server}\n`;
-        response += `   └ Guilde: ${char.guild}\n\n`;
+        const charInfo = `**${index + 1}. ${char.name}**\n   └ Classe: ${char.classe} | Niveau: ${char.level}\n   └ Serveur: ${char.server}\n   └ Guilde: ${char.guild}\n\n`;
+        
+        if ((currentMessage + charInfo).length > 1900) {
+          messages.push(currentMessage);
+          currentMessage = charInfo;
+        } else {
+          currentMessage += charInfo;
+        }
       });
       
-      await message.reply({ content: response });
+      if (currentMessage.length > 0) {
+        messages.push(currentMessage);
+      }
+      
+      await message.reply({ content: messages[0] });
+      
+      for (let i = 1; i < messages.length; i++) {
+        await message.channel.send({ content: messages[i] });
+      }
+      
       console.log(`✅ Profil récupéré pour: ${compte} (${profileData.characters.length} personnage(s))`);
       
     } catch (error) {
